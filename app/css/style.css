@@ -1,0 +1,50 @@
+  body {
+    background-color: powderblue;
+  }
+  h1 {
+    color: blue;
+  }
+  p {
+    color: red;
+  }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  main {
+    max-width: 640px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the content horizontally */
+    background-color: black;
+    flex: 1;
+    padding: 20px;
+  }
+  
+  header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    margin-top: auto; /* Push footer to the bottom */
+    /*width: 100%; /* Footer width */
+    text-align: center;
+  }
+  
+  main {
+    flex: 1; /* Take remaining space */
+    padding: 20px;
+  }
