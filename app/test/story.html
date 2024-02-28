@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Learn Train Adventure</title>
+    <style>
+        /* CSS styles go here */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 style="color: rgb(43, 185, 36);"><img src="/img/png-image.png" / width="60px"
+                    style="padding: 0; margin-bottom: -10px; margin-right: 2px">agan
+                om
+                flickan som var
+                uttråkad</h1>
+        </header>
+        <main>
+            <div id="content">
+                <p>Du är en liten herde flicka som vaktar familjens får.</p>
+                <p>Efter ett litet tag blir du så uttråkad att du bara MÅSTE hitta på något roligt att göra.</p>
+            </div>
+            <p>Vad gör du?</p>
+            <ul>
+                <li>
+                    <p onclick="Backend.getPage('cry-wolf')">Ropar - vargen kommer! Vargen kommer! bara för att
+                        det är
+                        skoj?</p>
+                </li>
+                <li>
+                    <p onclick="Backend.getPage('play-with-fire')">Leker med tändstickor och försöker tända en
+                        brasa?</p>
+                </li>
+                <li>
+                    <p onclick="Backend.getPage('guard-sheep')">Vaktar fåren som en snäll och lydig flicka.
+                    </p>
+                </li>
+            </ul>
+
+        </main>
+        <footer>
+        </footer>
+    </div>
+    <!--<script src="/js/game-engine.js"></script>
+    <script src="/js/game-content.js"></script>-->
+    <script src="/js/ajax.js"></script>
+    <script src="/js/dom.js"></script>
+    <script>
+        // Initialize game engine
+        //const game = new GameEngine();
+
+        // Initialize game content
+        //const gameContent = new GameContent();
+
+        // Start the game
+        //game.start(gameContent);
+
+        localStorage.clear()
+
+
+
+        //Backend.getNextQuestion()
+        //Backend.getNextPage()
+        //console.log(t)
+        //contentDiv.innerHTML = Dom.questionToHTML(t)
+        //Dom.pageToHTML(Backend.getNextPage())
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,27 +10,31 @@
     /* CSS styles go here */
   </style>
 </head>
+
 <body>
-    <div class="container">
+  <div class="container">
     <header>
-        <h1>Header</h1>
-      </header>
-      <main>
-        <h2>Main Content Area</h2>
-        <p>This is where your main content goes.</p>
-        <div id="game">
-            <div id="output"></div>
-            <input type="text" id="input" placeholder="Type your command here...">
-            <button onclick="submitCommand()">Submit</button>
-            <p>something else</p>
-          </div>
-      </main>
-      <footer>
-        <p>Footer</p>
-      </footer>
-    </div>
+      <h1>Header</h1>
+    </header>
+    <main>
+      <h2>Main Content Area</h2>
+      <p>This is where your main content goes.</p>
+      <div id="content"></div>
+      <div id="game">
+        <div id="output"></div>
+        <input type="text" id="input" placeholder="Type your command here...">
+        <button class="button-74" role="button" onclick="submitCommand()">Submit</button>
+        <p>something else</p>
+      </div>
+    </main>
+    <footer>
+      <p>Footer</p>
+    </footer>
+  </div>
   <script src="js/game-engine.js"></script>
   <script src="js/game-content.js"></script>
+  <script src="js/ajax.js"></script>
+  <script src="js/dom.js"></script>
   <script>
     // Initialize game engine
     const game = new GameEngine();
@@ -39,6 +44,17 @@
 
     // Start the game
     game.start(gameContent);
+
+    localStorage.clear()
+
+
+
+    //Backend.getNextQuestion()
+    Backend.getNextPage()
+    //console.log(t)
+    //contentDiv.innerHTML = Dom.questionToHTML(t)
+    //Dom.pageToHTML(Backend.getNextPage())
   </script>
 </body>
+
 </html>

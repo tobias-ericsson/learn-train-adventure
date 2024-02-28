@@ -1,0 +1,12 @@
+{
+  "title": "Ropa på Vargen",
+  "question": [
+    "Hennes föräldrar kom snabbt springandes tillsammans med grannarna för att rädda flickan och fåren från vargen.",
+    "Men det fanns ingen varg, istället satt flickan och skrattade på en sten.",
+    "Nästa dag vaktade hon fåren igen, och återigen blev hon uttråkad och skrek så högt hon bara kunde “Varg” “Varg”.",
+    "Föräldrarna kom återigen springandes och hittade honom skrattandes igen.",
+    "De blev mycket arga och besvikna på flickan."
+  ],
+  "answer": { "cry-wolf": "Ropa p| vargen", "play-with-fire": "lek med eld" },
+  "next": "question-2"
+}
