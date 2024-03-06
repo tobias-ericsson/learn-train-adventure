@@ -8,7 +8,8 @@ tasks:
   push:
     preconditions: 
       # test existence of modified files, grep will exit with a failure if there is no match
-      - git ls-files -m -o | grep -E '.'
+      - sh: git ls-files -m -o | grep -E '.'
+        msg: "nothing to do, no modified files"
     #status:
     #  - git status
     cmds:
