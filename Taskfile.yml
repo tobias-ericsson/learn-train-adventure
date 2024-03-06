@@ -16,8 +16,3 @@ tasks:
       - git add --all
       - git commit -m "app"
       - git push
-
-
-  assets:
-    cmds:
-      - esbuild --bundle --minify css/index.css > public/bundle.css
