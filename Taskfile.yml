@@ -1,0 +1,21 @@
+version: '3'
+
+tasks:
+  run:
+    cmds:
+      - python3 -m http.server 8000 --directory app
+
+  push:
+    preconditions: 
+      - git status
+    status:
+      - git status
+    cmds:
+      - git add app
+      - git commit -m "app"
+      - git push
+
+
+  assets:
+    cmds:
+      - esbuild --bundle --minify css/index.css > public/bundle.css
