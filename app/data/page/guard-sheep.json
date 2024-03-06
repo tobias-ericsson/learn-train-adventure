@@ -1,9 +1,8 @@
 {
-  "title": "Vakta fåren",
-  "question": [
+  "title": "Vaktar fåren",
+  "text": [
     "Du varktar fåren hela dagen.",
-    "Nästa dag vaktar du fåren igen.",
-    "och blir återigen uttråkad, denna gången bara MÅSTE du göra något roligt!"
+    "Nästa dag vaktar du fåren igen och blir återigen uttråkad, denna gången bara MÅSTE du göra något roligt!"
   ],
   "answer": { "cry-wolf": "Ropa på vargen", "play-with-fire": "lek med eld" },
   "next": "question-2"
