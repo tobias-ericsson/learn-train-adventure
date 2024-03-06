@@ -7,11 +7,11 @@ tasks:
 
   push:
     preconditions: 
-      - git status
-    status:
-      - git status
+       - git ls-files -m -o | grep -E '.'
+    #status:
+    #  - git status
     cmds:
-      - git add app
+      - git add --all
       - git commit -m "app"
       - git push
 
