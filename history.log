@@ -1,0 +1,7 @@
+devbox init
+devbox add nodejs
+devbox shell
+sudo npm i -g @nestjs/cli
+nest new learn-train-adventure
+
+

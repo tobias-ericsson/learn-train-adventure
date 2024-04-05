@@ -1,0 +1,22 @@
+version: '3'
+
+tasks:
+  run:
+    cmds:
+      - npm run start:dev
+  lint:
+    cmds:
+      - npm run lint
+      - npm run format
+
+  push:
+    preconditions: 
+      # test existence of modified files, grep will exit with a failure if there is no match
+      - sh: git ls-files -m -o | grep -E '.'
+        msg: "nothing to do, no modified files"
+    #status:
+    #  - git status
+    cmds:
+      - git add --all
+      - git commit -m "app"
+      - git push
