@@ -1,6 +1,54 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "google-cloud-sdk@latest": {
+      "last_modified": "2024-03-22T11:26:23Z",
+      "resolved": "github:NixOS/nixpkgs/a3ed7406349a9335cb4c2a71369b697cecd9d351#google-cloud-sdk",
+      "source": "devbox-search",
+      "version": "467.0.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/4qrsv6ylnglwpnzvhy3nj3n6k4m9mnjc-google-cloud-sdk-467.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/4qrsv6ylnglwpnzvhy3nj3n6k4m9mnjc-google-cloud-sdk-467.0.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mvld7b455xwhwqhn68zgm7j1askwhap9-google-cloud-sdk-467.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/mvld7b455xwhwqhn68zgm7j1askwhap9-google-cloud-sdk-467.0.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/a9xi9r58mzpibpqp73r9324gzmhncj26-google-cloud-sdk-467.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/a9xi9r58mzpibpqp73r9324gzmhncj26-google-cloud-sdk-467.0.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/4z8xxkagzdgjdspdjaymynv38j072dq1-google-cloud-sdk-467.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/4z8xxkagzdgjdspdjaymynv38j072dq1-google-cloud-sdk-467.0.0"
+        }
+      }
+    },
     "nodejs@latest": {
       "last_modified": "2024-03-22T11:26:23Z",
       "plugin_version": "0.0.2",

@@ -9,10 +9,11 @@ RUN adduser \
   --uid 65532 \
   go-user
 
-WORKDIR /app
+WORKDIR $GOPATH/src/golang/app/
 
 COPY main.go main.go
 COPY go.mod go.mod
+COPY public public
 
 #RUN go mod download
 #RUN go mod verify
@@ -26,10 +27,8 @@ COPY --from=base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=base /etc/passwd /etc/passwd
 COPY --from=base /etc/group /etc/group
 
-USER go-user:go-user
-WORKDIR /app
+COPY --from=base /main .
 
-COPY --from=base /main main
-COPY public/. public
+USER go-user:go-user
 
 CMD ["./main"]

@@ -1,9 +1,21 @@
 version: '3'
 
 tasks:
+  default:
+    cmds:
+      - task --list-all
   run:
     cmds:
       - python3 -m http.server 8000 --directory app
+
+  gcp:deploy:
+    cmds:
+      - gcloud run deploy 
+
+  gcp:info:
+   cmds:
+     - gcloud run services list
+     - gcloud run services describe backend
 
   push:
     preconditions: 
