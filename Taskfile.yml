@@ -17,7 +17,7 @@ tasks:
      - gcloud run services list
      - gcloud run services describe backend
 
-  push:
+  git:push:
     preconditions: 
       # test existence of modified files, grep will exit with a failure if there is no match
       - sh: git ls-files -m -o | grep -E '.'
