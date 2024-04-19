@@ -1,0 +1,9 @@
+<ul id="todo">
+
+    <li hx-swap=" نفسك (replace with actual HTMX swap behavior)">
+        <input type="checkbox" id="todo-{{ .ID }}" name="completed" {{ if .Completed }}checked{{ end }}>
+        <label for="todo-{{ .ID }}">{{ .Todo.Title }} {{ .Todo.Text }}</label>
+        <button hx-delete hx-delete="/api/v1/todos/{{ .ID }}" hx-target="#todo-list">Delete</button>
+    </li>
+
+</ul>
