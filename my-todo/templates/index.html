@@ -1,30 +1,73 @@
 {{- /* Go Template */ -}}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do List</title>
-  <link href="https://unpkg.com/htmx.org@1.7.2" rel="stylesheet">
+  <title>Todos</title>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <link rel="stylesheet" href="static/css/style.css">
 </head>
+</head>
+
 <body>
-  <h1>To-Do List</h1>
-  <ul id="todo-list">
-    {{ range .Todos }}
-      <li hx-swap=" نفسك (replace with actual HTMX swap behavior)">
-        <input type="checkbox" id="todo-{{ .ID }}" name="completed" {{ if .Completed }}checked{{ end }}>
-        <label for="todo-{{ .ID }}">{{ .Text }}</label>
-        <button hx-delete hx-delete="/api/v1/todos/{{ .ID }}" hx-target="#todo-list">Delete</button>
-      </li>
-    {{ end }}
-  </ul>
-  <form hx-post="/api/v1/todos" hx-target="#todo-list">
+  <h1>Todos</h1>
+
+  <table hx-swap="outerHTML" id="todo-table">
+    <thead>
+      <tr>
+        <th>
+          <p>Done</p>
+        </th>
+        <th>Todo</th>
+        <!--<th>Type</th>-->
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range .Todos }}
+      <tr>
+        <td><input type="checkbox" id="todo-{{ .ID }}" name="completed" {{ if .Completed }}checked{{ end }}></td>
+        <td hx-trigger="click" hx-target="this" hx-swap="outerHTML" hx-get="/contact/1/edit">
+          <h3>{{.Title }}</h3>
+          <p>{{.Text }}</p>
+        </td>
+        <!--<td>{{.Type }}</td>-->
+        <td><button hx-delete hx-delete="/api/v1/todos/{{ .ID }}" hx-target="#todo-list">Delete</button></td>
+      </tr>
+      {{ end }}
+      <tr>
+        <td>
+          <p hx-post="/html/v1/todos">+</p>
+        </td>
+        <td>
+          <button class='btn' hx-get="/contacts/?page=2" hx-target="#replaceMe" hx-swap="outerHTML">
+            Load More Agents... <img class="htmx-indicator" src="/img/bars.svg">
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <br />
+  <br />
+  <br />
+
+  <form hx-post="/html/v1/todos" hx-target="#todo-list">
     <input type="text" name="text" placeholder="Add a new todo">
-    <button type="submit">Add</button>
+    <button hx-post="/html/v1/todos" type="submit">Add</button>
   </form>
+
+
+  <button hx-post="/html/v1/todos" hx-swap="outerHTML">
+    Click Me
+  </button>
 
   <script>
     // HTMX logic for updating the list, marking completed, etc.
   </script>
 </body>
+
 </html>

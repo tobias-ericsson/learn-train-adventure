@@ -1,0 +1,55 @@
+  body {
+    font-family: "Papyrus", fantasy, sans-serif;
+    background-color: gray
+  }
+
+  h1 {
+    color: rgb(104, 104, 203);
+    font-family: "Papyrus", fantasy, sans-serif;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  p, h3 {
+    margin: 2px;
+    padding: 2px;
+  }
+  
+  #todo-table {
+    color: white;
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 15px;  
+    border: 0;
+    background-color: rgb(104, 104, 203);
+  }
+  
+  #todo-table th, #todo-table td {
+    padding: 2px 4px;
+    border: 0px solid #ddd; 
+    width: 100px; 
+  }
+
+  #todo-table thead {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #todo-table thead th {
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #todo-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+    color: #000;
+  }
+
+  #todo-table td:nth-child(2) {  /* Target the middle column (2nd child) */
+    width: 90%; 
+  }
+
+  #todo-table td:nth-child(odd) {  /* Target the middle column (2nd child) */
+    text-align: center;
+  }
+
+  

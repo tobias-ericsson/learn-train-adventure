@@ -32,6 +32,7 @@ var todos []ToDo
 func init() {
 	todos = append(todos, ToDo{ID: 1, Title: "Buy", Text: "Buy Groceries", Type: BUY, Completed: false})
 	todos = append(todos, ToDo{ID: 2, Title: "Do", Text: "Finish Report", Type: DO, Completed: true})
+	todos = append(todos, ToDo{ID: 3, Title: "Birthday present", Text: "Present to Theo", Type: DO, Completed: true})
 
 	// Parse the template
 	//template.Must(template.ParseFiles("templates/index.html"))
@@ -106,13 +107,16 @@ func getTodoByID(c *gin.Context) {
 }
 
 func createTodo(c *gin.Context) {
-	var newTodo ToDo
-	if err := c.BindJSON(&newTodo); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
-		return
-	}
+	var newTodo = ToDo{ID: 3, Title: "New", Text: "...", Type: DO, Completed: false}
+
+	/*
+		if err := c.BindJSON(&newTodo); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
+			return
+		}*/
 
 	newTodo.ID = len(todos) + 1
+
 	todos = append(todos, newTodo)
 
 	c.JSON(http.StatusCreated, newTodo)
@@ -128,7 +132,7 @@ func updateTodo(c *gin.Context) {
 
 	var updatedTodo ToDo
 	if err := c.BindJSON(&updatedTodo); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body !!!!"})
 		return
 	}
 
