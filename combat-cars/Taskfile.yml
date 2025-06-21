@@ -1,0 +1,17 @@
+version: "3"
+
+tasks:
+  default:
+    desc: List of tasks
+    cmds:
+      - task --list-all
+
+  help:
+    desc: help
+    cmds:
+      - cat README.md
+
+  run:
+    desc: run
+    cmds:
+      - python3 -m http.server 8083
