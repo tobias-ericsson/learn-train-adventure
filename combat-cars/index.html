@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combat Cars 2D</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        
+        #gameContainer {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            max-height: 800px;
+        }
+        
+        #gameCanvas {
+            border: 2px solid #333;
+            background: #2a2a2a;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #ui {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .health-bar {
+            position: absolute;
+            width: 200px;
+            height: 20px;
+            background: #333;
+            border: 2px solid #555;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .health-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff3333, #ff6666);
+            transition: width 0.3s ease;
+        }
+        
+        #player1Health {
+            top: 20px;
+            left: 20px;
+        }
+        
+        #player2Health {
+            top: 20px;
+            right: 20px;
+        }
+        
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+            pointer-events: all;
+        }
+        
+        #gameOver h2 {
+            margin: 0 0 20px 0;
+            font-size: 32px;
+        }
+        
+        #restartBtn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        #restartBtn:hover {
+            background: #45a049;
+        }
+        
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ccc;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .control-section {
+            margin: 5px 0;
+        }
+        
+        .player-label {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .player2-label {
+            color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui">
+            <div id="player1Health" class="health-bar">
+                <div class="health-fill" style="width: 100%"></div>
+            </div>
+            <div id="player2Health" class="health-bar">
+                <div class="health-fill" style="width: 100%"></div>
+            </div>
+            <div id="gameOver">
+                <h2 id="winnerText">Player 1 Wins!</h2>
+                <button id="restartBtn">Restart Game</button>
+            </div>
+            <div id="controls">
+                <div class="control-section">
+                    <span class="player-label">Player 1:</span> WASD to move, Tab to shoot
+                </div>
+                <div class="control-section">
+                    <span class="player-label player2-label">Player 2:</span> Arrow keys to move, Enter to shoot
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.2/pixi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/planck-js/1.3.0/planck.min.js"></script>
+    <script>
+        // Ensure Planck is available globally
+        if (typeof planck === 'undefined') {
+            console.error('Planck.js failed to load');
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+
+    <!-- Game files -->
+    <script src="js/physics.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/car.js"></script>
+    <script src="js/projectile.js"></script>
+    <script src="js/game.js"></script>
+    <script>
+        // Ensure all scripts are loaded before initializing game
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof Game !== 'undefined' && typeof Car !== 'undefined') {
+                window.game = new Game();
+            } else {
+                console.error('Game classes not loaded properly');
+            }
+        });
+    </script>
+</body>
+</html>

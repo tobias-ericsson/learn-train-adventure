@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Combat Cars - Test</title>
+</head>
+<body>
+    <h1>Testing Combat Cars...</h1>
+    <div id="test-results"></div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.2/pixi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/planck-js/0.3.3/planck-with-test.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    
+    <script>
+        const results = document.getElementById('test-results');
+        
+        function log(message) {
+            results.innerHTML += '<p>' + message + '</p>';
+        }
+        
+        log('Testing dependencies...');
+        
+        // Test PIXI
+        if (typeof PIXI !== 'undefined') {
+            log('✓ PIXI loaded successfully');
+        } else {
+            log('✗ PIXI failed to load');
+        }
+        
+        // Test Planck
+        if (typeof planck !== 'undefined') {
+            log('✓ Planck.js loaded successfully');
+            
+            // Test Planck functionality
+            try {
+                const world = new planck.World(new planck.Vec2(0, 0));
+                const body = world.createBody({type: 'dynamic', position: new planck.Vec2(0, 0)});
+                body.createFixture(new planck.Box(1, 1));
+                log('✓ Planck.js basic functionality works');
+            } catch (e) {
+                log('✗ Planck.js functionality error: ' + e.message);
+            }
+        } else {
+            log('✗ Planck.js failed to load');
+        }
+        
+        // Test Howler
+        if (typeof Howl !== 'undefined') {
+            log('✓ Howler.js loaded successfully');
+        } else {
+            log('✗ Howler.js failed to load');
+        }
+        
+        log('Dependencies test complete!');
+    </script>
+</body>
+</html>
