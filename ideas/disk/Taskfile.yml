@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  default:
+    desc: List of tasks
+    cmds:
+      - task --list-all
+
+  help:
+    desc: help
+    cmds:
+      - cat README.md
+
+  build:
+    desc: Build and install the save binary
+    cmds:
+      - go build -o disk
+      - go install
