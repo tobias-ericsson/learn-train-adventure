@@ -1,0 +1,22 @@
+<context>
+# Overview
+Create a text adventure rpg entierly in the browser. The player can choose between different options to reach different paths, and sometimes random events should happen.
+The player should begin by selecting different skills and traits, which will be used later in the game.
+
+# Core Features
+- Create a story with many different paths/pages. 
+- The paths can be stored as html or markdown pages
+- present in mobile first webpages
+
+# User Experience
+- The player can choose between different options to reach different paths, and sometimes random events should happen.
+- At times the player will need to use different skills selected in the beginning.
+- Users may not be connected to internet at all times so good to store progress in browser storage/local storage.
+</context>
+<PRD>
+# Technical Architecture
+- implement in html, css and plain javascript. Not React or other big framework.
+
+# Development Roadmap
+- Do not think about timelines whatsoever -- all that matters is scope and detailing exactly what needs to be build in each phase so it can later be cut up into tasks
+</PRD>
