@@ -12,6 +12,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"syscall"
 )
 
 const (
@@ -207,32 +208,58 @@ func duDepth(root string) ([]sizedPath, error) {
 }
 
 func findFiles(root string) ([]sizedPath, error) {
-	cmd := exec.Command("find", root, "-xdev", "-type", "f", "-printf", "%s\t%p\000")
-	var out bytes.Buffer
-	cmd.Stdout = &out
-	cmd.Stderr = os.Stderr
-	if err := cmd.Run(); err != nil {
-		return nil, fmt.Errorf("find failed: %w", err)
+	rootInfo, err := os.Stat(root)
+	if err != nil {
+		return nil, fmt.Errorf("stat root: %w", err)
 	}
+	rootDev, hasDev := deviceID(rootInfo)
 
-	parts := bytes.Split(out.Bytes(), []byte{0})
-	entries := make([]sizedPath, 0, len(parts))
-	for _, part := range parts {
-		if len(part) == 0 {
-			continue
-		}
-		fields := bytes.SplitN(part, []byte{'\t'}, 2)
-		if len(fields) != 2 {
-			continue
-		}
-		sizeBytes, err := strconv.ParseInt(string(bytes.TrimSpace(fields[0])), 10, 64)
+	var entries []sizedPath
+	walkErr := filepath.WalkDir(root, func(path string, d os.DirEntry, err error) error {
 		if err != nil {
-			continue
+			// Skip unreadable paths, but keep walking.
+			return nil
 		}
-		path := string(bytes.TrimSpace(fields[1]))
-		entries = append(entries, sizedPath{size: sizeBytes, path: path})
+
+		if d.IsDir() {
+			if !hasDev {
+				return nil
+			}
+			info, err := d.Info()
+			if err != nil {
+				return nil
+			}
+			dev, ok := deviceID(info)
+			if ok && dev != rootDev {
+				return filepath.SkipDir
+			}
+			return nil
+		}
+
+		info, err := d.Info()
+		if err != nil {
+			return nil
+		}
+		if hasDev {
+			if dev, ok := deviceID(info); ok && dev != rootDev {
+				return nil
+			}
+		}
+		entries = append(entries, sizedPath{size: info.Size(), path: path})
+		return nil
+	})
+	if walkErr != nil {
+		return nil, fmt.Errorf("walk failed: %w", walkErr)
 	}
 	return entries, nil
+}
+
+func deviceID(info os.FileInfo) (uint64, bool) {
+	stat, ok := info.Sys().(*syscall.Stat_t)
+	if !ok {
+		return 0, false
+	}
+	return uint64(stat.Dev), true
 }
 
 func humanSize(bytes int64) string {
