@@ -1,15 +1,75 @@
-# Disk
+# disk
 
-A small CLI (written in Go) that streamlines that informs about disk space.
-Uses common linux tools like du ad df under the hood.
+`disk` is a small CLI tool to inspect disk usage for a directory.
 
-**What it does**
-`disk`:
-* informs in human readable form the sized of all the harddrives and how much available disk space is left.
-* gives the top 6 bigest folders
-* gives the top 6 bigest files
+It shows:
 
-**Usage**
-`disk <path>`
-* same as disk but relative to path, only care about the harddrive the path belongs to.
+- Filesystem usage (`df -h <path>`)
+- Top N largest folders (using `du`)
+- Top N largest files (streamed, O(n log k))
 
+## Install
+
+From the `disk` directory:
+
+```
+go build -o disk
+```
+
+Or install globally:
+
+```
+go install
+```
+
+## Usage
+
+```
+disk [path] [flags]
+```
+
+If no path is provided, it defaults to the current directory (`.`).
+
+## Flags
+
+- `--depth N`   Folder depth for `du` (default: 1)
+- `--top N`     Number of results to show (default: 6)
+- `--ignore P`  Ignore glob pattern (repeatable)
+
+## Examples
+
+Basic:
+
+```
+disk
+```
+
+Specific directory:
+
+```
+disk ~/projects
+```
+
+Deep folder analysis:
+
+```
+disk . --depth 3
+```
+
+Large repo with ignores:
+
+```
+disk . --top 25 --ignore .git --ignore node_modules
+```
+
+Combined example:
+
+```
+disk ~/projects --depth 2 --top 20 --ignore .git --ignore dist
+```
+
+## Performance
+
+- Folder sizes use native `du` for speed.
+- File sizes are streamed with a min-heap (O(n log k)).
+- Memory usage scales with `--top`, not total file count.
